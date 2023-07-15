@@ -1,0 +1,40 @@
+info:
+  title: Users
+paths:
+  /users:
+    get:
+      operationId: users/index
+      tags:
+        - Users
+      summary: Get users
+      responses:
+        "200":
+          description: Get Users
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/UsersIndexResponse"
+              examples:
+                UsersExist:
+                  value:
+                    users:
+                      - id: 1
+                        name: John Doe
+                      - id: 2
+                        name: Jane Doe
+                UsersNotExist:
+                  value: {}
+components:
+  schemas:
+    UsersIndexResponse:
+      oneOf:
+        - type: object
+          properties: {}
+        - type: object
+          properties:
+            users:
+              type: array
+              items:
+                allOf:
+                  - $ref: "./models/user.yaml#/components/schemas/User"

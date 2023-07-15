@@ -1,0 +1,15 @@
+components:
+  schemas:
+    User:
+      description: User
+      type: object
+      properties:
+        id:
+          type: number
+          example: 1
+        name:
+          type: string
+          example: "John Doe"
+      required:
+        - id
+        - name
