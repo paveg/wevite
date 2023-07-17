@@ -24,13 +24,12 @@ paths:
                       - id: 2
                         name: Jane Doe
                 UsersNotExist:
-                  value: {}
+                  value:
+                    users: []
 components:
   schemas:
     UsersIndexResponse:
-      oneOf:
-        - type: object
-          properties: {}
+      allOf:
         - type: object
           properties:
             users:

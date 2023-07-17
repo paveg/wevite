@@ -12,12 +12,8 @@ export interface User {
   name: string;
 }
 
-export type UsersIndexResponseOneOfTwo = {
+export type UsersIndexResponseAllOf = {
   users?: User[];
 };
 
-export type UsersIndexResponseOneOf = { [key: string]: any };
-
-export type UsersIndexResponse =
-  | UsersIndexResponseOneOf
-  | UsersIndexResponseOneOfTwo;
+export type UsersIndexResponse = UsersIndexResponseAllOf;
