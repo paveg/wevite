@@ -1,6 +1,33 @@
 info:
   title: Users
 paths:
+  /users/{id}:
+    get:
+      operationId: users/show
+      tags:
+        - Users
+      summary: Get user
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+      responses:
+        "200":
+          description: Get User
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/UsersShowResponse"
+              examples:
+                UserExist:
+                  value:
+                    id: 1
+                    name: John Doe
+                UserNotExist:
+                  value: {}
   /users:
     get:
       operationId: users/index
@@ -13,8 +40,7 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                  - $ref: "#/components/schemas/UsersIndexResponse"
+                $ref: "#/components/schemas/UsersIndexResponse"
               examples:
                 UsersExist:
                   value:
@@ -28,6 +54,10 @@ paths:
                     users: []
 components:
   schemas:
+    UsersShowResponse:
+      allOf:
+        - type: object
+          $ref: "./models/user.yaml#/components/schemas/User"
     UsersIndexResponse:
       allOf:
         - type: object

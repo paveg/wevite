@@ -8,5 +8,7 @@ tags:
   - name: Users
     description: Users APIs
 paths:
+  /api/p/users/{id}:
+    $ref: "./users.yaml#/paths/~1users~1{id}"
   /api/p/users:
     $ref: "./users.yaml#/paths/~1users"

@@ -17,3 +17,5 @@ export type UsersIndexResponseAllOf = {
 };
 
 export type UsersIndexResponse = UsersIndexResponseAllOf;
+
+export type UsersShowResponse = User;
