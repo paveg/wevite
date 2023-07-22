@@ -12,3 +12,5 @@ paths:
     $ref: "./users.yaml#/paths/~1users~1{id}"
   /api/p/users:
     $ref: "./users.yaml#/paths/~1users"
+  /api/p/icebreakers:
+    $ref: "./icebreakers.yaml#/paths/~1icebreakers"

@@ -1,0 +1,15 @@
+components:
+  schemas:
+    IceBreaker:
+      description: IceBreaker
+      type: object
+      properties:
+        question:
+          type: string
+          example: What is your favorite hobby?
+        description:
+          type: string
+          example: Asking about hobbies helps you discover the other person's interests and uniqueness. Finding common hobbies can lead to more engaging conversations.
+      required:
+        - question
+        - description

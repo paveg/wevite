@@ -1,6 +1,7 @@
 import express from "express";
 import cors from 'cors';
 import ViteExpress from "vite-express";
+import IceBreakers from './icebreakers.json';
 
 const app = express();
 
@@ -17,6 +18,10 @@ app.get("/api/p/users", (_, res) => {
 
 app.get("/api/p/users/:id", (req, res) => {
   res.send({ user: { id: req.params.id, name: "John" } })
+})
+
+app.get("/api/p/icebreakers", (_, res) => {
+  res.send({ icebreakers: IceBreakers });
 })
 
 ViteExpress.listen(app, 3000, () =>

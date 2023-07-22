@@ -5,9 +5,14 @@ import {
 } from "react-router-dom";
 import { UserDetailPage } from './pages/users/show';
 import { UserListPage } from "./pages/users/list";
+import { IceBreakerListPage } from "./pages/icebreakers/list";
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <IceBreakerListPage />,
+  },
+  {
+    path: "/users",
     element: <UserListPage />,
   },
   {
@@ -18,9 +23,7 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <div className="App">
-      <RouterProvider router={router} />
-    </div>
+    <RouterProvider router={router} />
   );
 }
 

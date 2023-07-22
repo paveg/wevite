@@ -10,7 +10,6 @@ if (import.meta.env.DEV) {
   worker.start()
 }
 
-
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(

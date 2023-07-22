@@ -5,12 +5,26 @@
  * OpenAPI spec version: 1.0
  */
 /**
+ * IceBreaker
+ */
+export interface IceBreaker {
+  question: string;
+  description: string;
+}
+
+/**
  * User
  */
 export interface User {
   id: number;
   name: string;
 }
+
+export type IceBreakersIndexResponseAllOf = {
+  icebreakers?: IceBreaker[];
+};
+
+export type IceBreakersIndexResponse = IceBreakersIndexResponseAllOf;
 
 export type UsersIndexResponseAllOf = {
   users?: User[];

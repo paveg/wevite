@@ -1,5 +1,5 @@
 import { rest } from 'msw';
-import { getUsersIndexMock, getUsersShowMock } from '../client/apis/generated';
+import { getIceBreakersMSW, getIcebreakersIndexMock, getUsersIndexMock, getUsersShowMock } from '../client/apis/generated';
 
 export const handlers = [
   rest.get('/api/p/users', (_req, res, ctx) => {

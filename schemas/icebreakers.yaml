@@ -1,0 +1,28 @@
+info:
+  title: IceBreakers
+paths:
+  /icebreakers:
+    get:
+      operationId: icebreakers/index
+      tags:
+        - IceBreakers
+      summary: Get icebreakers
+      responses:
+        "200":
+          description: Get IceBreakers
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/IceBreakersIndexResponse"
+components:
+  schemas:
+    IceBreakersIndexResponse:
+      allOf:
+        - type: object
+          properties:
+            icebreakers:
+              type: array
+              items:
+                allOf:
+                  - $ref: "./models/icebreaker.yaml#/components/schemas/IceBreaker"
