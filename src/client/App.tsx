@@ -11,14 +11,6 @@ const router = createBrowserRouter([
     path: "/",
     element: <IceBreakerListPage />,
   },
-  {
-    path: "/users",
-    element: <UserListPage />,
-  },
-  {
-    path: "/users/:id",
-    element: <UserDetailPage />,
-  }
 ]);
 
 function App() {

@@ -12,16 +12,9 @@ const options: cors.CorsOptions = {
 
 app.use(cors(options))
 
-app.get("/api/p/users", (_, res) => {
-  res.send({ users: [{ id: 1, name: "John" }, { id: 2, name: "Jane" }] });
-});
-
-app.get("/api/p/users/:id", (req, res) => {
-  res.send({ user: { id: req.params.id, name: "John" } })
-})
-
-app.get("/api/p/icebreakers", (_, res) => {
-  res.send({ icebreakers: IceBreakers });
+app.get("/api/p/icebreaker", (_, res) => {
+  const icebreaker = IceBreakers[Math.floor(Math.random() * IceBreakers.length)];
+  res.send({ icebreaker: icebreaker });
 })
 
 ViteExpress.listen(app, 3000, () =>

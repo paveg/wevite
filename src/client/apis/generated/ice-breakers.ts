@@ -13,68 +13,68 @@ import type {
   UseQueryResult,
   QueryKey,
 } from "@tanstack/react-query";
-import type { IceBreakersIndexResponse } from "./api.schemas";
+import type { IceBreakersRandomResponse } from "./api.schemas";
 import { rest } from "msw";
 import { faker } from "@faker-js/faker";
 
 /**
- * @summary Get icebreakers
+ * @summary Get Random icebreaker
  */
-export const icebreakersIndex = (
-  options?: AxiosRequestConfig
-): Promise<AxiosResponse<IceBreakersIndexResponse>> => {
-  return axios.get(`/api/p/icebreakers`, options);
+export const icebreakersRandom = (
+  options?: AxiosRequestConfig,
+): Promise<AxiosResponse<IceBreakersRandomResponse>> => {
+  return axios.get(`/api/p/icebreaker`, options);
 };
 
-export const getIcebreakersIndexQueryKey = () =>
-  [`/api/p/icebreakers`] as const;
+export const getIcebreakersRandomQueryKey = () =>
+  [`/api/p/icebreaker`] as const;
 
-export const getIcebreakersIndexQueryOptions = <
-  TData = Awaited<ReturnType<typeof icebreakersIndex>>,
-  TError = AxiosError<unknown>
+export const getIcebreakersRandomQueryOptions = <
+  TData = Awaited<ReturnType<typeof icebreakersRandom>>,
+  TError = AxiosError<unknown>,
 >(options?: {
   query?: UseQueryOptions<
-    Awaited<ReturnType<typeof icebreakersIndex>>,
+    Awaited<ReturnType<typeof icebreakersRandom>>,
     TError,
     TData
   >;
   axios?: AxiosRequestConfig;
 }): UseQueryOptions<
-  Awaited<ReturnType<typeof icebreakersIndex>>,
+  Awaited<ReturnType<typeof icebreakersRandom>>,
   TError,
   TData
 > & { queryKey: QueryKey } => {
   const { query: queryOptions, axios: axiosOptions } = options ?? {};
 
-  const queryKey = queryOptions?.queryKey ?? getIcebreakersIndexQueryKey();
+  const queryKey = queryOptions?.queryKey ?? getIcebreakersRandomQueryKey();
 
   const queryFn: QueryFunction<
-    Awaited<ReturnType<typeof icebreakersIndex>>
-  > = ({ signal }) => icebreakersIndex({ signal, ...axiosOptions });
+    Awaited<ReturnType<typeof icebreakersRandom>>
+  > = ({ signal }) => icebreakersRandom({ signal, ...axiosOptions });
 
   return { queryKey, queryFn, ...queryOptions };
 };
 
-export type IcebreakersIndexQueryResult = NonNullable<
-  Awaited<ReturnType<typeof icebreakersIndex>>
+export type IcebreakersRandomQueryResult = NonNullable<
+  Awaited<ReturnType<typeof icebreakersRandom>>
 >;
-export type IcebreakersIndexQueryError = AxiosError<unknown>;
+export type IcebreakersRandomQueryError = AxiosError<unknown>;
 
 /**
- * @summary Get icebreakers
+ * @summary Get Random icebreaker
  */
-export const useIcebreakersIndex = <
-  TData = Awaited<ReturnType<typeof icebreakersIndex>>,
-  TError = AxiosError<unknown>
+export const useIcebreakersRandom = <
+  TData = Awaited<ReturnType<typeof icebreakersRandom>>,
+  TError = AxiosError<unknown>,
 >(options?: {
   query?: UseQueryOptions<
-    Awaited<ReturnType<typeof icebreakersIndex>>,
+    Awaited<ReturnType<typeof icebreakersRandom>>,
     TError,
     TData
   >;
   axios?: AxiosRequestConfig;
 }): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-  const queryOptions = getIcebreakersIndexQueryOptions(options);
+  const queryOptions = getIcebreakersRandomQueryOptions(options);
 
   const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
     queryKey: QueryKey;
@@ -85,25 +85,19 @@ export const useIcebreakersIndex = <
   return query;
 };
 
-export const getIcebreakersIndexMock = () => ({
-  icebreakers: faker.helpers.arrayElement([
-    Array.from(
-      { length: faker.datatype.number({ min: 1, max: 10 }) },
-      (_, i) => i + 1
-    ).map(() => ({
-      question: faker.random.word(),
-      description: faker.random.word(),
-    })),
+export const getIcebreakersRandomMock = () => ({
+  icebreaker: faker.helpers.arrayElement([
+    { question: faker.random.word(), description: faker.random.word() },
     undefined,
   ]),
 });
 
 export const getIceBreakersMSW = () => [
-  rest.get("*/api/p/icebreakers", (_req, res, ctx) => {
+  rest.get("*/api/p/icebreaker", (_req, res, ctx) => {
     return res(
       ctx.delay(1000),
       ctx.status(200, "Mocked status"),
-      ctx.json(getIcebreakersIndexMock())
+      ctx.json(getIcebreakersRandomMock()),
     );
   }),
 ];

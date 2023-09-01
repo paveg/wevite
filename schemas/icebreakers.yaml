@@ -3,26 +3,23 @@ info:
 paths:
   /icebreakers:
     get:
-      operationId: icebreakers/index
+      operationId: icebreakers/random
       tags:
         - IceBreakers
-      summary: Get icebreakers
+      summary: Get Random icebreaker
       responses:
         "200":
-          description: Get IceBreakers
+          description: Get random IceB
           content:
             application/json:
               schema:
                 type: object
-                $ref: "#/components/schemas/IceBreakersIndexResponse"
+                $ref: "#/components/schemas/IceBreakersRandomResponse"
 components:
   schemas:
-    IceBreakersIndexResponse:
+    IceBreakersRandomResponse:
       allOf:
         - type: object
           properties:
-            icebreakers:
-              type: array
-              items:
-                allOf:
-                  - $ref: "./models/icebreaker.yaml#/components/schemas/IceBreaker"
+            icebreaker:
+              $ref: "./models/icebreaker.yaml#/components/schemas/IceBreaker"

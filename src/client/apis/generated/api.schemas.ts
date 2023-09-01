@@ -20,11 +20,11 @@ export interface User {
   name: string;
 }
 
-export type IceBreakersIndexResponseAllOf = {
-  icebreakers?: IceBreaker[];
+export type IceBreakersRandomResponseAllOf = {
+  icebreaker?: IceBreaker;
 };
 
-export type IceBreakersIndexResponse = IceBreakersIndexResponseAllOf;
+export type IceBreakersRandomResponse = IceBreakersRandomResponseAllOf;
 
 export type UsersIndexResponseAllOf = {
   users?: User[];

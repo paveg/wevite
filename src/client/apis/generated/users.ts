@@ -22,7 +22,7 @@ import { faker } from "@faker-js/faker";
  */
 export const usersShow = (
   id: number,
-  options?: AxiosRequestConfig
+  options?: AxiosRequestConfig,
 ): Promise<AxiosResponse<UsersShowResponse>> => {
   return axios.get(`/api/p/users/${id}`, options);
 };
@@ -32,7 +32,7 @@ export const getUsersShowQueryKey = (id: number) =>
 
 export const getUsersShowQueryOptions = <
   TData = Awaited<ReturnType<typeof usersShow>>,
-  TError = AxiosError<unknown>
+  TError = AxiosError<unknown>,
 >(
   id: number,
   options?: {
@@ -42,7 +42,7 @@ export const getUsersShowQueryOptions = <
       TData
     >;
     axios?: AxiosRequestConfig;
-  }
+  },
 ): UseQueryOptions<Awaited<ReturnType<typeof usersShow>>, TError, TData> & {
   queryKey: QueryKey;
 } => {
@@ -67,7 +67,7 @@ export type UsersShowQueryError = AxiosError<unknown>;
  */
 export const useUsersShow = <
   TData = Awaited<ReturnType<typeof usersShow>>,
-  TError = AxiosError<unknown>
+  TError = AxiosError<unknown>,
 >(
   id: number,
   options?: {
@@ -77,7 +77,7 @@ export const useUsersShow = <
       TData
     >;
     axios?: AxiosRequestConfig;
-  }
+  },
 ): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
   const queryOptions = getUsersShowQueryOptions(id, options);
 
@@ -94,7 +94,7 @@ export const useUsersShow = <
  * @summary Get users
  */
 export const usersIndex = (
-  options?: AxiosRequestConfig
+  options?: AxiosRequestConfig,
 ): Promise<AxiosResponse<UsersIndexResponse>> => {
   return axios.get(`/api/p/users`, options);
 };
@@ -103,7 +103,7 @@ export const getUsersIndexQueryKey = () => [`/api/p/users`] as const;
 
 export const getUsersIndexQueryOptions = <
   TData = Awaited<ReturnType<typeof usersIndex>>,
-  TError = AxiosError<unknown>
+  TError = AxiosError<unknown>,
 >(options?: {
   query?: UseQueryOptions<
     Awaited<ReturnType<typeof usersIndex>>,
@@ -135,7 +135,7 @@ export type UsersIndexQueryError = AxiosError<unknown>;
  */
 export const useUsersIndex = <
   TData = Awaited<ReturnType<typeof usersIndex>>,
-  TError = AxiosError<unknown>
+  TError = AxiosError<unknown>,
 >(options?: {
   query?: UseQueryOptions<
     Awaited<ReturnType<typeof usersIndex>>,
@@ -164,7 +164,7 @@ export const getUsersIndexMock = () => ({
   users: faker.helpers.arrayElement([
     Array.from(
       { length: faker.datatype.number({ min: 1, max: 10 }) },
-      (_, i) => i + 1
+      (_, i) => i + 1,
     ).map(() => ({
       id: faker.datatype.number({ min: undefined, max: undefined }),
       name: faker.random.word(),
@@ -178,14 +178,14 @@ export const getUsersMSW = () => [
     return res(
       ctx.delay(1000),
       ctx.status(200, "Mocked status"),
-      ctx.json(getUsersShowMock())
+      ctx.json(getUsersShowMock()),
     );
   }),
   rest.get("*/api/p/users", (_req, res, ctx) => {
     return res(
       ctx.delay(1000),
       ctx.status(200, "Mocked status"),
-      ctx.json(getUsersIndexMock())
+      ctx.json(getUsersIndexMock()),
     );
   }),
 ];
